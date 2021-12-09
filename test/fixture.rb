@@ -56,7 +56,7 @@ module Fixtures
     class BeforeAfterA
       def before_a(number)
         Fixtures.callstack.push([self.class, __method__, number])
-        number + 5
+        { args: [number + 5], kwargs: {} }
       end
 
       def after_a(return_value, number)
@@ -69,7 +69,7 @@ module Fixtures
       # :a
       def before_a(number)
         Fixtures.callstack.push([self.class, __method__, number])
-        number + 10
+        { args: [number + 10], kwargs: {} }
       end
 
       def after_a(return_value, number)
@@ -80,7 +80,7 @@ module Fixtures
       # :b
       def before_b(array)
         Fixtures.callstack.push([self.class, __method__, array])
-        array | [66]
+        { args: [array | [66]], kwargs: {} }
       end
 
       def after_b(return_value, array)
@@ -94,7 +94,7 @@ module Fixtures
       def before_c(string:)
         Fixtures.callstack.push([self.class, __method__, string])
         @state = string.length
-        {string: string + "_wat"}
+        { args: [], kwargs: {string: string + "_wat"} }
       end
 
       # :c
@@ -108,13 +108,13 @@ module Fixtures
       # :a
       def before_a(number)
         Fixtures.callstack.push([self.class, __method__, number])
-        number + 10
+        { args: [number + 10], kwargs: {} }
       end
 
       # :c
       def before_c(string:)
         Fixtures.callstack.push([self.class, __method__, string])
-        {string: string + "_foo"}
+        { args: [], kwargs: {string: string + "_foo"} }
       end
     end
 
@@ -122,30 +122,30 @@ module Fixtures
       # :a
       def before_a(number)
         Fixtures.callstack.push([self.class, __method__, number])
-        number + 50
+        { args: [number + 50], kwargs: {} }
       end
 
       # :a
       def before_b(array)
         Fixtures.callstack.push([self.class, __method__, array])
-        array | [33]
+        { args: [array | [33]], kwargs: {} }
       end
 
       # :c
       def before_c(string:)
         Fixtures.callstack.push([self.class, __method__, string])
-        {string: string + "_bar"}
+        { args: [], kwargs: {string: string + "_bar"} }
       end
 
       # :d
       def before_d(context:)
         Fixtures.callstack.push([self.class, __method__, context])
-        {context: context + "_bar"}
+        { args: [], kwargs: {context: context + "_bar"} }
       end
 
       def before_e(first, second)
         Fixtures.callstack.push([self.class, __method__, [first, second]])
-        [first + 5, second + 5]
+        { args: [first + 5, second + 5], kwargs: {} }
       end
     end
 
