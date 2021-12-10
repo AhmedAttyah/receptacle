@@ -4,6 +4,13 @@ Changelog
 master
 ---
 
+2.0.0
+---
+
+* delegate kwargs explicitly to support ruby 3
+* change expected return value structure in `before_` methods in wrappers
+---
+
 1.0.0
 ---
 
@@ -39,4 +46,3 @@ master
 ---
 
 * initial release
-
