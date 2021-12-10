@@ -14,6 +14,7 @@ module Fixtures
     mediate :c
     mediate :d
     mediate :e
+    mediate :f
   end
 
   module Strategy
@@ -41,6 +42,11 @@ module Fixtures
       def e(first, second)
         Fixtures.callstack.push([self.class, __method__, [first, second]])
         first + second
+      end
+
+      def f(first)
+        Fixtures.callstack.push([self.class, __method__, [first]])
+        first + 1
       end
     end
 
@@ -146,6 +152,11 @@ module Fixtures
       def before_e(first, second)
         Fixtures.callstack.push([self.class, __method__, [first, second]])
         { args: [first + 5, second + 5], kwargs: {} }
+      end
+
+      def before_f(first)
+        Fixtures.callstack.push([self.class, __method__, [first]])
+        first + 2
       end
     end
 

@@ -11,5 +11,6 @@ module Receptacle
     end
 
     class ReservedMethodName < StandardError; end
+    class BeforeWrapperReturnError < StandardError; end
   end
 end

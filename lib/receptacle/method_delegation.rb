@@ -104,6 +104,11 @@ module Receptacle
         else
           wrapper.public_send(method_name, *(all_args[:args]), **all_args[:kwargs])
         end
+
+        unless all_args.is_a?(Hash) and all_args.keys == [:args, :kwargs]
+          raise Errors::BeforeWrapperReturnError.new("wrapper before_* method must return"\
+                "a hash with the following structure {args: [], kwargs: {}}")
+        end
       end
       all_args
     end

@@ -176,6 +176,14 @@ class ReceptacleTest < Minitest::Test
     ], callstack
   end
 
+  def test_before_wrapper_wrong_return_value
+    receptacle.strategy Fixtures::Strategy::One
+    receptacle.wrappers [Fixtures::Wrapper::BeforeAll]
+    assert_raises Receptacle::Errors::BeforeWrapperReturnError do
+      receptacle.f(1)
+    end
+  end
+
   def test_after_wrapper
     receptacle.strategy Fixtures::Strategy::Two
     receptacle.wrappers [Fixtures::Wrapper::AfterAll]
